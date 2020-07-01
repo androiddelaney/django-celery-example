@@ -20,8 +20,11 @@ python manage.py migrate
 python manage.py runserver
 ```
 
+
+For Celery 4.0+ on Win10 install gevent 
 ```bash
-celery -A mysite worker -l info
+pip install gevent
+celery -A mysite worker -l info -P gevent
 ```
 
 Make sure you have RabbitMQ service running.
@@ -29,5 +32,13 @@ Make sure you have RabbitMQ service running.
 ```bash
 rabbitmq-server
 ```
+
+Using Docker
+```bash
+docker pull rabbitmq:3-management
+docker run --rm -it --hostname my-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management
+```
+ http://localhost:15672 
+ guest:guest
 
 For more info see the Blog post.
